@@ -23,7 +23,7 @@ from django.views.generic.base import TemplateView
 
 from publication_app.views import publish_post_page, posts_page
 from users_app.views import registration_page, edit_profile, view_profile
-
+from tags_app.views import tags_page, tag_posts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +34,8 @@ urlpatterns = [
     path('post/publish_post/', publish_post_page, name='publish_post'),
     url(r'^user/edit_profile/$', edit_profile, name ='edit_profile'),
     url(r'^user/profile/$', view_profile, name ='view_profile'),
+    path('tags/', tags_page, name='tags'),
+    path('tags/tag_publications/<str:tag_label>', tag_posts, name='tag_posts'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
