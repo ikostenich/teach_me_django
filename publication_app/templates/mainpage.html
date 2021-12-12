@@ -1,10 +1,35 @@
+{% load static %}
+{% load menu_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
 </head>
 <body>
-$END$
+    <div>
+        <div id="user">{% login_menu %}</div>
+        <div id="menu">{% menu %}</div>
+    </div>
+    <div>
+        <form action="/publish_post/" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{ publish_post_form }}
+            <input type="submit" value="Publish">
+        </form>
+    </div>
+    <div>
+        {% for post in posts %}
+        <h2>{{post.title}}</h2>
+        <div>{{post.text}}</div>
+        {% if post.image %}
+        </div>
+            <img src="{{post.image.url}}"></img>
+        </div>
+        {% endif %}
+        <div>Author: {{post.author}}</div>
+        {% endfor %}
+    </div>
 </body>
 </html>

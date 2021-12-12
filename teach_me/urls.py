@@ -15,7 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from publication_app.views import main_page, publish_post_page
+from users_app.views import registration_page, auth_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', main_page, name='main_page'),
+    path('registration/', registration_page, name='registration'),
+    path('auth/', auth_page, name='auth'),
+    path('publish_post/', publish_post_page, name='publish_post'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
