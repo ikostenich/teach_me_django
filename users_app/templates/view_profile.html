@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+
+{% block title %}View Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        {{ profile_form.as_table }}
+        </table>
+        <a href="/user/edit_profile/">Edit</a>
+    </form>
+    <br>
+</div>
+{% endblock %}

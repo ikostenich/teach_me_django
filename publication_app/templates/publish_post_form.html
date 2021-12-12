@@ -1,5 +1,9 @@
-<form action="/publish_post/" enctype="multipart/form-data" method="post">
+{% extends "mainpage.html" %}
+
+{% block publish_post %}
+<form action="/post/publish_post/" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ publish_post_form }}
     <input type="submit" value="Publish">
 </form>
+{% endblock %}

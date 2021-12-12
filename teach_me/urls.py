@@ -14,20 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.base import TemplateView
 
-from publication_app.views import main_page, publish_post_page
-from users_app.views import registration_page, auth_page
+from publication_app.views import publish_post_page, posts_page
+from users_app.views import registration_page, edit_profile, view_profile
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_page, name='main_page'),
-    path('registration/', registration_page, name='registration'),
-    path('auth/', auth_page, name='auth'),
-    path('publish_post/', publish_post_page, name='publish_post'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', TemplateView.as_view(template_name='home.html'), name='main_page'),
+    path('posts/', posts_page, name='posts'),
+    path('accounts/registration/', registration_page, name='registration'),
+    path('post/publish_post/', publish_post_page, name='publish_post'),
+    url(r'^user/edit_profile/$', edit_profile, name ='edit_profile'),
+    url(r'^user/profile/$', view_profile, name ='view_profile'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

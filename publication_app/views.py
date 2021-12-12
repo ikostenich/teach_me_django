@@ -6,14 +6,13 @@ from .forms.publish_post import PublishPostForm
 
 
 # Create your views here.
-def main_page(request):
+def posts_page(request):
     posts = Post.objects.filter(is_public=True, is_deleted=False).order_by('-create_date', '-id').all()
     publish_post_form = PublishPostForm()
-    context = {'title': "Hello World (context)",
-               'posts': posts,
+    context = {'posts': posts,
                'publish_post_form': publish_post_form,
                }
-    return render(request, 'mainpage.html', context)
+    return render(request, 'posts.html', context)
 
 
 def publish_post_page(request):

@@ -12,13 +12,11 @@
         <div id="user">{% login_menu %}</div>
         <div id="menu">{% menu %}</div>
     </div>
-    <div>
-        <form action="/publish_post/" enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            {{ publish_post_form }}
-            <input type="submit" value="Publish">
-        </form>
-    </div>
+
+    {% block publish_post %}
+        <a href='/post/publish_post/'>Publish Post </a>
+    {% endblock %}
+
     <div>
         {% for post in posts %}
         <h2>{{post.title}}</h2>

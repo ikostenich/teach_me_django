@@ -14,11 +14,11 @@ def login_menu(context):
     if context.request.user.is_authenticated:
         menu = [
             {
-                'url': "/profile/",
+                'url': "/user/profile/",
                 'title': context.request.user.username,
             },
             {
-                'url': "/logout/",
+                'url': "/accounts/logout/",
                 'title': "Logout",
             },
         ]
@@ -26,11 +26,11 @@ def login_menu(context):
     else:
         menu = [
             {
-                'url': "/registration/",
+                'url': "/user/registration/",
                 'title': "Sign up",
             },
             {
-                'url': "/auth/",
+                'url': "/accounts/login/",
                 'title': "Log in",
             },
         ]
