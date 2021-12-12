@@ -1,0 +1,33 @@
+{% load static %}
+{% load menu_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div>
+        <div id="user">{% login_menu %}</div>
+        <div id="menu">{% menu %}</div>
+    </div>
+
+    {% block publish_post %}
+        <a href='/post/publish_post/'>Publish Post </a>
+    {% endblock %}
+
+    <div>
+        {% for post in posts %}
+        <h2>{{post.title}}</h2>
+        <div>{{post.text}}</div>
+        {% if post.image %}
+        </div>
+            <img src="{{post.image.url}}"></img>
+        </div>
+        {% endif %}
+        <div>Author: {{post.author}}</div>
+        {% endfor %}
+    </div>
+</body>
+</html>

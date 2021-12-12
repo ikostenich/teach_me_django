@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load menu_tags %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block header_menu %}
+<div>
+    <div id="user">{% login_menu %}</div>
+    <div id="menu">{% menu %}</div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% block publish_post %}
+<a href='/post/publish_post/'>Publish Post </a>
+{% endblock %}
+
+<div>
+    {% block posts %}
+    <a href="posts">View Posts</a>
+    {% endblock %}
+</div>
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <a href="{% url 'registration' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

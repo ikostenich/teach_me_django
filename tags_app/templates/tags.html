@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+    <div>
+        {% for tag in tags %}
+        <a href="/tags/tag_publications/{{ tag.tag_label }}"><h2>{{tag.tag_label}}</h2></a>
+        
+        {% endfor %}
+    </div>
+{% endblock %}

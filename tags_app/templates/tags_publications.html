@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+
+{% block title %}Tags Publications{% endblock %}
+
+{% block content %}
+    <div>
+        <h2> {{ tag }} </h2>
+        <div>
+            {% for publication in publications %}
+            <h2>{{publication.title}}</h2>
+            <div>{{publication.text}}</div>
+            {% if publication.image %}
+            </div>
+                <img src="{{publication.image.url}}"></img>
+            </div>
+            {% endif %}
+            <div>Author: {{publication.author}}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
